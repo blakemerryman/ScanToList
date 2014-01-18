@@ -30,14 +30,14 @@
 {
     [super viewDidLoad];
 
-    // HIGHLIGHTER
+    // DATA INPUT HIGHLIGHTER
     self.captureHighlighter = [[UIView alloc] init];
     self.captureHighlighter.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
     self.captureHighlighter.layer.borderColor = [UIColor blueColor].CGColor;
     self.captureHighlighter.layer.borderWidth = 3;
     [self.view addSubview:self.captureHighlighter];
 
-    // LABEL
+    // DATA OUTPUT LABEL
     self.captureDataLabel = [[UILabel alloc] init];
     self.captureDataLabel.frame = CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40);
     self.captureDataLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -52,7 +52,7 @@
     self.captureDevice  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError* error = nil;
     
-    // INPUT
+    // INPUT & ERROR CHECK
     self.captureDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:&error];
     
     if (self.captureDeviceInput) {
@@ -61,13 +61,13 @@
         NSLog(@"Error: %@", error);
     }
     
-    // OUTPUT
+    // OUTPUT SET-UP
     self.captureDataOutput = [[AVCaptureMetadataOutput alloc] init];
     [self.captureDataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
     [self.captureSession addOutput:self.captureDataOutput];
     self.captureDataOutput.metadataObjectTypes = [self.captureDataOutput availableMetadataObjectTypes];
     
-    // PREVIEW
+    // PREVIEW SET-UP
     self.captureInputPreview = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
     self.captureInputPreview.frame = self.view.bounds;
     self.captureInputPreview.videoGravity = AVLayerVideoGravityResizeAspectFill;
