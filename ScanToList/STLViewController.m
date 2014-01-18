@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Blake Merryman. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "STLViewController.h"
 
-@interface STLViewController ()
+@interface STLViewController () <AVCaptureMetadataOutputObjectsDelegate>
 
 @end
 
