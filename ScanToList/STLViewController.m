@@ -35,9 +35,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark - Mandatory AVCapture-Delegate Method(s).
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
+    
+    
+    
     
 }
 
