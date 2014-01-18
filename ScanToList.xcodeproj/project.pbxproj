@@ -22,6 +22,7 @@
 		46712649188A092F0012A5DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46712628188A092F0012A5DE /* UIKit.framework */; };
 		46712651188A092F0012A5DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4671264F188A092F0012A5DE /* InfoPlist.strings */; };
 		46712653188A092F0012A5DE /* ScanToListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712652188A092F0012A5DE /* ScanToListTests.m */; };
+		4671265D188A0A090012A5DE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4671265C188A0A090012A5DE /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		4671264E188A092F0012A5DE /* ScanToListTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScanToListTests-Info.plist"; sourceTree = "<group>"; };
 		46712650188A092F0012A5DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		46712652188A092F0012A5DE /* ScanToListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanToListTests.m; sourceTree = "<group>"; };
+		4671265C188A0A090012A5DE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4671265D188A0A090012A5DE /* QuartzCore.framework in Frameworks */,
 				46712627188A092F0012A5DE /* CoreGraphics.framework in Frameworks */,
 				46712629188A092F0012A5DE /* UIKit.framework in Frameworks */,
 				46712625188A092F0012A5DE /* Foundation.framework in Frameworks */,
@@ -103,6 +106,7 @@
 		46712623188A092F0012A5DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4671265C188A0A090012A5DE /* QuartzCore.framework */,
 				46712624188A092F0012A5DE /* Foundation.framework */,
 				46712626188A092F0012A5DE /* CoreGraphics.framework */,
 				46712628188A092F0012A5DE /* UIKit.framework */,
@@ -114,12 +118,12 @@
 		4671262A188A092F0012A5DE /* ScanToList */ = {
 			isa = PBXGroup;
 			children = (
+				4671263C188A092F0012A5DE /* STLViewController.h */,
+				4671263D188A092F0012A5DE /* STLViewController.m */,
 				46712633188A092F0012A5DE /* STLAppDelegate.h */,
 				46712634188A092F0012A5DE /* STLAppDelegate.m */,
 				46712636188A092F0012A5DE /* Main_iPhone.storyboard */,
 				46712639188A092F0012A5DE /* Main_iPad.storyboard */,
-				4671263C188A092F0012A5DE /* STLViewController.h */,
-				4671263D188A092F0012A5DE /* STLViewController.m */,
 				4671263F188A092F0012A5DE /* Images.xcassets */,
 				4671262B188A092F0012A5DE /* Supporting Files */,
 			);
