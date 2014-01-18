@@ -30,10 +30,24 @@
 {
     [super viewDidLoad];
 
-    // TODO: Set up highlighter here
-    // TODO: Set up label here
+    // HIGHLIGHTER
+    self.captureHighlighter = [[UIView alloc] init];
+    self.captureHighlighter.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
+    self.captureHighlighter.layer.borderColor = [UIColor blueColor].CGColor;
+    self.captureHighlighter.layer.borderWidth = 3;
+    [self.view addSubview:self.captureHighlighter];
 
-    // CAPTURE SESSION
+    // LABEL
+    self.captureDataLabel = [[UILabel alloc] init];
+    self.captureDataLabel.frame = CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40);
+    self.captureDataLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    self.captureDataLabel.backgroundColor = [UIColor colorWithWhite:0.15 alpha:0.65];
+    self.captureDataLabel.textColor = [UIColor whiteColor];
+    self.captureDataLabel.textAlignment = NSTextAlignmentCenter;
+    self.captureDataLabel.text = @"---";
+    [self.view addSubview:self.captureDataLabel];
+    
+    // CAPTURE SESSION SET-UP
     self.captureSession = [[AVCaptureSession alloc] init];
     self.captureDevice  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError* error = nil;
@@ -61,9 +75,8 @@
     
     // START SESSION
     [self.captureSession startRunning];
-    
-    // TODO: more highlighter stuff here
-    // TODO: more label stuff here
+    [self.view bringSubviewToFront:self.captureHighlighter];
+    [self.view bringSubviewToFront:self.captureDataLabel];
 }
 
 - (void)didReceiveMemoryWarning
