@@ -88,10 +88,40 @@
 #pragma mark - Mandatory AVCapture-Delegate Method(s).
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
+    CGRect captureHighlightRect = CGRectZero;
+    AVMetadataMachineReadableCodeObject* captureDataObject;
+    NSString* captureDataOutputString;
+    NSArray* captureDataTypes = @[AVMetadataObjectTypeUPCECode,
+                                  AVMetadataObjectTypeCode39Code,
+                                  AVMetadataObjectTypeCode39Mod43Code,
+                                  AVMetadataObjectTypeEAN13Code,
+                                  AVMetadataObjectTypeEAN8Code,
+                                  AVMetadataObjectTypeCode93Code,
+                                  AVMetadataObjectTypeCode128Code,
+                                  AVMetadataObjectTypePDF417Code,
+                                  AVMetadataObjectTypeQRCode,
+                                  AVMetadataObjectTypeAztecCode];
     
+    for (AVMetadataObject* metaData in metadataObjects) {
+        for (NSString* type in captureDataTypes) {
+            if ([metaData.type isEqualToString:type]) {
+                captureDataObject = (AVMetadataMachineReadableCodeObject*)[self.captureInputPreview transformedMetadataObjectForMetadataObject:(AVMetadataMachineReadableCodeObject*)metaData];
+                captureHighlightRect = captureDataObject.bounds;
+                captureDataOutputString = [(AVMetadataMachineReadableCodeObject*)metaData stringValue];
+                break;
+            }
+        }
+        
+        if (captureDataOutputString != nil) {
+            self.captureDataLabel.text = captureDataOutputString;
+            break;
+        } else {
+            self.captureDataLabel.text = @"---";
+        }
+        
+    }
     
-    
-    
+    self.captureHighlighter.frame = captureHighlightRect;
 }
 
 @end
