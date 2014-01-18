@@ -29,11 +29,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    // TODO: Set up highlighter here
+    // TODO: Set up label here
+
+    // CAPTURE SESSION
+    self.captureSession = [[AVCaptureSession alloc] init];
+    self.captureDevice  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError* error = nil;
     
+    // INPUT
+    self.captureDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:&error];
     
+    if (self.captureDeviceInput) {
+        [self.captureSession addInput:self.captureDeviceInput];
+    } else {
+        NSLog(@"Error: %@", error);
+    }
     
+    // OUTPUT
+    self.captureDataOutput = [[AVCaptureMetadataOutput alloc] init];
+    [self.captureDataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+    [self.captureSession addOutput:self.captureDataOutput];
+    self.captureDataOutput.metadataObjectTypes = [self.captureDataOutput availableMetadataObjectTypes];
     
+    // PREVIEW
+    self.captureInputPreview = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+    self.captureInputPreview.frame = self.view.bounds;
+    self.captureInputPreview.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    [self.view.layer addSublayer:self.captureInputPreview];
+    
+    // START SESSION
+    [self.captureSession startRunning];
+    
+    // TODO: more highlighter stuff here
+    // TODO: more label stuff here
 }
 
 - (void)didReceiveMemoryWarning
