@@ -12,7 +12,14 @@
 #pragma mark - Private Interface: AVCapture Delegate
 @interface STLViewController () <AVCaptureMetadataOutputObjectsDelegate>
 
+@property (nonatomic) AVCaptureSession* captureSession;
+@property (nonatomic) AVCaptureDevice* captureDevice;
+@property (nonatomic) AVCaptureDeviceInput* captureDeviceInput;
+@property (nonatomic) AVCaptureMetadataOutput* captureDataOutput;
+@property (nonatomic) AVCaptureVideoPreviewLayer* captureInputPreview;
 
+@property (nonatomic) UIView* captureHighlighter;
+@property (nonatomic) UILabel* captureDataLabel;
 
 @end
 
