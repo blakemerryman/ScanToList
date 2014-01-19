@@ -23,7 +23,6 @@
 
 @end
 
-
 #pragma mark - Implementation
 @implementation STLViewController
 
@@ -115,8 +114,13 @@
         }
         
         if (captureDataOutputString != nil) {
+            
             self.captureDataLabel.text = captureDataOutputString;
+            
+            // TODO: Add captureDataOutputString to an array of strings held in a data model somewhere.
+            
             break;
+        
         } else {
             self.captureDataLabel.text = @"---";
         }
