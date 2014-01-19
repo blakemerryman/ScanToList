@@ -12,14 +12,19 @@
 #pragma mark - Private Interface: AVCapture Delegate
 @interface STLViewController () <AVCaptureMetadataOutputObjectsDelegate>
 
+#pragma mark - AVCapture Properties
 @property (nonatomic) AVCaptureSession* captureSession;
 @property (nonatomic) AVCaptureDevice* captureDevice;
 @property (nonatomic) AVCaptureDeviceInput* captureDeviceInput;
 @property (nonatomic) AVCaptureMetadataOutput* captureDataOutput;
 @property (nonatomic) AVCaptureVideoPreviewLayer* captureInputPreview;
 
+#pragma mark - GUI Properties
 @property (nonatomic) UIView* captureHighlighter;
 @property (nonatomic) UILabel* captureDataLabel;
+
+#pragma mark - Data Model
+@property (nonatomic) NSMutableArray* arrayOfCaptureDataOutputStrings;
 
 @end
 
@@ -117,7 +122,7 @@
             
             self.captureDataLabel.text = captureDataOutputString;
             
-            // TODO: Add captureDataOutputString to an array of strings held in a data model somewhere.
+            [self.arrayOfCaptureDataOutputStrings insertObject:[NSString stringWithString:captureDataOutputString] atIndex:0];
             
             break;
         
