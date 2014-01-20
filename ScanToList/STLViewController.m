@@ -52,6 +52,9 @@
     self.captureDataLabel.text = @"---";
     [self.view addSubview:self.captureDataLabel];
     
+    // DATA OUTPUT STRING STORAGE ARRAY SET-UP
+    self.arrayOfCaptureDataOutputStrings = [[NSMutableArray alloc] init];
+    
     // CAPTURE SESSION SET-UP
     self.captureSession = [[AVCaptureSession alloc] init];
     self.captureDevice  = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -119,13 +122,9 @@
         }
         
         if (captureDataOutputString != nil) {
-            
             self.captureDataLabel.text = captureDataOutputString;
-            
             [self.arrayOfCaptureDataOutputStrings insertObject:[NSString stringWithString:captureDataOutputString] atIndex:0];
-            
             break;
-        
         } else {
             self.captureDataLabel.text = @"---";
         }
