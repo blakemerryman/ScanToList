@@ -108,7 +108,7 @@
                                   AVMetadataObjectTypeCode128Code,
                                   AVMetadataObjectTypePDF417Code,
                                   AVMetadataObjectTypeQRCode,
-                                  AVMetadataObjectTypeAztecCode
+                                  //AVMetadataObjectTypeAztecCode
                                   ];
     
     for (AVMetadataObject* metaData in metadataObjects) {
