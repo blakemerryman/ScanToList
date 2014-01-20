@@ -12,17 +12,21 @@
 #pragma mark - Private Interface: AVCapture Delegate
 @interface STLViewController () <AVCaptureMetadataOutputObjectsDelegate>
 
+#pragma mark - AVCapture Properties
 @property (nonatomic) AVCaptureSession* captureSession;
 @property (nonatomic) AVCaptureDevice* captureDevice;
 @property (nonatomic) AVCaptureDeviceInput* captureDeviceInput;
 @property (nonatomic) AVCaptureMetadataOutput* captureDataOutput;
 @property (nonatomic) AVCaptureVideoPreviewLayer* captureInputPreview;
 
+#pragma mark - GUI Properties
 @property (nonatomic) UIView* captureHighlighter;
 @property (nonatomic) UILabel* captureDataLabel;
 
-@end
+#pragma mark - Data Model
+@property (nonatomic) NSMutableArray* arrayOfCaptureDataOutputStrings;
 
+@end
 
 #pragma mark - Implementation
 @implementation STLViewController
@@ -47,6 +51,9 @@
     self.captureDataLabel.textAlignment = NSTextAlignmentCenter;
     self.captureDataLabel.text = @"---";
     [self.view addSubview:self.captureDataLabel];
+    
+    // DATA OUTPUT STRING STORAGE ARRAY SET-UP
+    self.arrayOfCaptureDataOutputStrings = [[NSMutableArray alloc] init];
     
     // CAPTURE SESSION SET-UP
     self.captureSession = [[AVCaptureSession alloc] init];
@@ -101,7 +108,7 @@
                                   AVMetadataObjectTypeCode128Code,
                                   AVMetadataObjectTypePDF417Code,
                                   AVMetadataObjectTypeQRCode,
-                                  AVMetadataObjectTypeAztecCode
+                                  //AVMetadataObjectTypeAztecCode
                                   ];
     
     for (AVMetadataObject* metaData in metadataObjects) {
@@ -116,6 +123,7 @@
         
         if (captureDataOutputString != nil) {
             self.captureDataLabel.text = captureDataOutputString;
+            [self.arrayOfCaptureDataOutputStrings insertObject:[NSString stringWithString:captureDataOutputString] atIndex:0];
             break;
         } else {
             self.captureDataLabel.text = @"---";
